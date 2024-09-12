@@ -10,7 +10,7 @@ model_to_use = "gpt-4o-mini" if openAI_model == "mini" else "gpt-4o"
 
 # Initialize OpenAI client in session state if not already done
 if 'client' not in st.session_state:
-    api_key = st.secrets["OPENAI_API_KEY"] 
+    api_key = st.secrets["openai_key"] 
     st.session_state.client = OpenAI(api_key=api_key)
 
 # Initialize messages in session state if not already done
