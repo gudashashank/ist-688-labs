@@ -5,42 +5,19 @@ import sys
 sys.modules['sqlite3'] = sys.modules.pop('pysqlite3')
 import chromadb
 from chromadb.utils import embedding_functions
-import PyPDF2
 import tiktoken
 import os
 
 # Initialize OpenAI client
 client = OpenAI(api_key=st.secrets["openai_key"])
 
-# Function to create ChromaDB collection and embed PDF documents
-def create_chromadb_collection(pdf_files):
+# Initialize ChromaDB client with persistent storage
+def initialize_chromadb():
     if 'Lab4_vectorDB' not in st.session_state:
-        # Initialize ChromaDB client with persistent storage
+        # Load existing ChromaDB collection from the file path
         client = chromadb.PersistentClient(path="./chroma_db")
         st.session_state.Lab4_vectorDB = client.get_or_create_collection(name="Lab4Collection")
-        
-        # Set up OpenAI embedding function
-        openai_embedder = embedding_functions.OpenAIEmbeddingFunction(api_key=st.secrets["openai_key"], model_name="text-embedding-3-small")
-        
-        # Loop through provided PDF files, convert to text, and add to the vector database
-        for file in pdf_files:
-            try:
-                # Read PDF file and extract text
-                pdf_text = ""
-                pdf_reader = PyPDF2.PdfReader(file)
-                for page in pdf_reader.pages:
-                    pdf_text += page.extract_text()
-                
-                # Add document to ChromaDB collection with embeddings
-                st.session_state.Lab4_vectorDB.add(
-                    documents=[pdf_text],
-                    metadatas=[{"filename": file.name}],
-                    ids=[file.name]
-                )
-            except Exception as e:
-                st.error(f"Error processing {file.name}: {e}")
-        
-        st.success("ChromaDB collection has been created successfully!")
+        st.success("ChromaDB collection loaded successfully!")
 
 # Function to count tokens
 def num_tokens_from_string(string: str, encoding_name: str) -> int:
@@ -83,12 +60,8 @@ def generate_response(messages):
 # Streamlit application
 st.title("Course Information Chatbot")
 
-# Load PDF files
-pdf_files = st.file_uploader("Upload your PDF files", accept_multiple_files=True, type=["pdf"])
-
-# Create ChromaDB collection and embed documents if not already created
-if st.button("Create ChromaDB Collection") and pdf_files:
-    create_chromadb_collection(pdf_files)
+# Initialize the ChromaDB collection (automatically)
+initialize_chromadb()
 
 # Initialize chat history
 if "messages" not in st.session_state:
