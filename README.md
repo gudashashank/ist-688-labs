@@ -1,19 +1,10 @@
-# 📄 Document question answering template
+## Lab Work for IST-688
 
-A simple Streamlit app that answers questions about an uploaded document via OpenAI's GPT-3.5.
+This repository was part of the lab work for **IST-688** taught by **Professor Salt**. 
 
-[![Open in Streamlit](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://document-question-answering-template.streamlit.app/)
+- **Building Chatbots**: Using **OpenAI's API** to create intelligent conversational agents.
+- **Retrieval-Augmented Generation (RAG)**: Implementing RAG to enhance chatbot responses by integrating information retrieval.
+- **Prompt Engineering**: Crafting effective prompts to optimize model performance.
+- **Streamlit**: Developing interactive web applications to visualize data and showcase chatbot functionality.
 
-### How to run it on your own machine
-
-1. Install the requirements
-
-   ```
-   $ pip install -r requirements.txt
-   ```
-
-2. Run the app
-
-   ```
-   $ streamlit run streamlit_app.py
-   ```
+These skills provided hands-on experience with AI technologies and practical applications for real-world scenarios.
