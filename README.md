@@ -10,5 +10,5 @@ This repository was part of the lab work for **IST-688** taught by **Professor S
 These skills provided hands-on experience with AI technologies and practical applications for real-world scenarios.
 
 📝 **Note:**  
-This app will remain available until our current API credits are exhausted. At this time, we are unable to provide an option for users to connect their own API to the app. We apologize for the inconvenience and appreciate your understanding.
+This app will remain available until my current API credits are exhausted. At this time, I am unable to provide an option for users to connect their own API to the app. I apologize for the inconvenience and appreciate your understanding.
 
